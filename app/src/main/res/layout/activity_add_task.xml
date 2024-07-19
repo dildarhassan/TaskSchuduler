@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Task Title Input -->
+    <EditText
+        android:id="@+id/editTextTaskTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Task Title"
+        android:textSize="16sp"
+        android:padding="8dp"/>
+
+    <!-- Due Date Input -->
+    <EditText
+        android:id="@+id/editTextTaskDueDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Due Date (YYYY-MM-DD)"
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:inputType="date"/>
+
+    <!-- Save Task Button -->
+    <Button
+        android:id="@+id/buttonSaveTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Task"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>
