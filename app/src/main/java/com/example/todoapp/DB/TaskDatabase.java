@@ -1,4 +1,4 @@
-package com.example.todoapp;
+package com.example.todoapp.DB;
 
 import android.content.Context;
 import androidx.room.Database;

@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todoapp.Adapter.TaskAdapter;
+import com.example.todoapp.DB.TaskDatabase;
 import com.example.todoapp.entity.TaskEntity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerViewTasks;
     private TaskAdapter taskAdapter;
     private TaskDatabase taskDatabase;
     private static final int REQUEST_CODE_ADD_TASK = 1;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerViewTasks = findViewById(R.id.recyclerViewTasks);
+        RecyclerView recyclerViewTasks = findViewById(R.id.recyclerViewTasks);
         recyclerViewTasks.setLayoutManager(new LinearLayoutManager(this));
 
         taskAdapter = new TaskAdapter();
@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTaskDelete(TaskEntity task) {
                 deleteTask(task);
+
+
             }
         });
     }
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             if (requestCode == REQUEST_CODE_ADD_TASK) {
                 TaskEntity newTask = new TaskEntity(taskTitle, taskDueDate);
                 insertTask(newTask);
-            } else if (requestCode == REQUEST_CODE_EDIT_TASK) {
+            } else {
                 int taskId = data.getIntExtra("taskId", -1);
                 if (taskId != -1) {
                     TaskEntity updatedTask = new TaskEntity(taskTitle, taskDueDate);
