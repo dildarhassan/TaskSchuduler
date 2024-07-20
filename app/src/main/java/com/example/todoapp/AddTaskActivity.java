@@ -13,6 +13,7 @@ public class AddTaskActivity extends AppCompatActivity {
     private EditText editTextTaskTitle;
     private EditText editTextTaskDueDate;
     private Button buttonSaveTask;
+    private int taskId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,16 @@ public class AddTaskActivity extends AppCompatActivity {
         editTextTaskDueDate = findViewById(R.id.editTextTaskDueDate);
         buttonSaveTask = findViewById(R.id.buttonSaveTask);
 
+        Intent intent = getIntent();
+        if (intent.hasExtra("taskId")) {
+            setTitle("Edit Task");
+            taskId = intent.getIntExtra("taskId", -1);
+            editTextTaskTitle.setText(intent.getStringExtra("taskTitle"));
+            editTextTaskDueDate.setText(intent.getStringExtra("taskDueDate"));
+        } else {
+            setTitle("Add Task");
+        }
+
         buttonSaveTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -30,6 +41,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 String taskDueDate = editTextTaskDueDate.getText().toString();
 
                 Intent resultIntent = new Intent();
+                resultIntent.putExtra("taskId", taskId);
                 resultIntent.putExtra("taskTitle", taskTitle);
                 resultIntent.putExtra("taskDueDate", taskDueDate);
                 setResult(Activity.RESULT_OK, resultIntent);
